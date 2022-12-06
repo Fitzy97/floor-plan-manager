@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 
 import './App.css';
+import LoginPage from "./login-page/LoginPage";
+import ListingPage from "./listing-page/ListingPage";
+import CreatorPage from "./creator-page/CreatorPage";
+import ViewerPage from "./viewer-page/ViewerPage";
 
+/**
+ * Wrapper component for application.  Instantiates the router and routes for
+ * each page: {@link LoginPage}, {@link ListingPage}, {@link CreatorPage}, and {@link ViewerPage}
+ *
+ * Note that unrecognized routes will re-route to the login page.
+ */
 function FloorPlanManager({ baseClass }) {
-
-    const [blah, setBlah] = useState('');
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch(`/api/blah`);
-
-            setBlah(await new Response(response.body).text());
-        }
-        fetchData();
-    }, [setBlah]);
-
     return (
-        <div className={baseClass}>
-            {blah}
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/listing/:userId" element={<ListingPage />} />
+                <Route path="/creator/:userId" element={<CreatorPage />} />
+                <Route path="/viewer/:floorPlanId" element={<ViewerPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
