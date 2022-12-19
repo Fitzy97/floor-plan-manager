@@ -4,7 +4,7 @@ Floor plan manager app! Builds and saves custom floor plans.
 # Requirements
 `pipenv` -- If you don't have this, run `pip install pipenv` in your shell.
 
-The frontend runs on `localhost:3000`, and the backend runs on `localhost:8080`.
+The frontend runs on `localhost:3000`, and the backend runs on `localhost:8000`.
 # Usage
 First, start your server, which we'll run in a virtual pip environment.
 
