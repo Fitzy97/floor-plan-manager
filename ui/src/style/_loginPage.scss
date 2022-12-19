@@ -1,0 +1,68 @@
+@use 'variables';
+
+.#{variables.$login-page}-login-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  background-color: skyblue;
+}
+
+.#{variables.$login-page}-login-frame {
+  margin: auto;
+  border: 1px solid skyblue;
+}
+
+.#{variables.$login-page}-tab-frame {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid skyblue;
+
+  .#{variables.$login-page}-tab {
+    width: 100%;
+    background-color: white;
+    border: none;
+    height: 3rem;
+    font-size: medium;
+  }
+
+  .#{variables.$login-page}-tab:hover {
+    background-color: bisque;
+  }
+
+  :first-child {
+    border-right: 1px solid skyblue;
+  }
+}
+
+.#{variables.$login-page}-form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1rem;
+
+  .#{variables.$login-page}-password-wrapper {
+    span {
+      margin-right: 0.2rem;
+    }
+
+    button {
+      background-color: white;
+      border: none;
+      color: blue;
+    }
+  }
+
+  .#{variables.$login-page}-submit-button {
+    margin-top: 1rem;
+    align-self: flex-end;
+    background-color: bisque;
+    height: 2rem;
+    border-radius: 0.25rem;
+  }
+
+  .#{variables.$login-page}-api-error {
+    color: red;
+  }
+}

@@ -1,0 +1,39 @@
+@use 'variables';
+
+.#{variables.$listing-page} {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vh;
+  background-color: skyblue;
+  justify-content: center;
+}
+
+.#{variables.$listing-page} {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  align-items: center;
+}
+
+.#{variables.$listing-page}-createbutton {
+  height: 2rem;
+  width: 5rem;
+  background-color: bisque;
+  border-radius: 0.25rem;
+}
+
+.#{variables.$listing-page}-scrollpane {
+  width: 25rem;
+  height: 40rem;
+  background-color: white;
+  border: 1px solid skyblue;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    margin: 3rem;
+    font-size: medium;
+    align-self: center;
+  };
+}
