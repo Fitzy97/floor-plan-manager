@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
   background-color: skyblue;
   justify-content: center;
 }
@@ -31,4 +31,8 @@
     height: 2rem;
     border-radius: 0.25rem;
   }
+}
+
+.#{variables.$creator-page}-error {
+  color: red;
 }

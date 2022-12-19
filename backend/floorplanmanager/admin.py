@@ -4,6 +4,7 @@ from .models import User
 class UserAdmin(admin.ModelAdmin):
     list_display = ('user_name', 'password')
 
-# Register your models here.
+class FloorPlanAdmin(admin.ModelAdmin):
+    list_display = ('title', 'user_id')
 
 admin.site.register(User, UserAdmin)

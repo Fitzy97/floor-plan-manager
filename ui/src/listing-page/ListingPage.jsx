@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
+import find from 'lodash/find';
 
 /**
  * Renders a list of floor plans created by the user.
@@ -16,15 +18,13 @@ function ListingPage() {
     const navigate = useNavigate();
 
     const [floorPlans, setFloorPlans] = useState([]);
-    const [userName, setUserName] = useState('');
     const [showErrors, setShowErrors] = useState(false);
     const [apiError, setApiError] = useState('');
 
     useEffect(() => {
         async function fetchFloorPlans() {
-            const { payload } = await axios.get('api/floorPlans', { userId });
-            setFloorPlans(payload.floorPlans);
-            setUserName(payload.userName)
+            const payload = await axios.get(`/api/floorPlans/?user=${userId}`);
+            setFloorPlans(get(payload, 'data'));
         }
 
         try {
@@ -36,24 +36,33 @@ function ListingPage() {
     }, [userId]);
 
     const handleListingClick = (floorPlanId) => {
-        navigate(`viewer/${floorPlanId}`);
+        navigate(`/viewer/${floorPlanId}`, {
+            state: {
+                ...find(floorPlans, (floorPlan) =>
+                    get(floorPlan, 'id') === floorPlanId
+                )
+            }
+        });
     }
 
     const handleCreateNew = () => {
-        navigate(`creator/${userId}`);
+        navigate(`/creator/${userId}`);
     }
 
     return (
         <div className={baseClass}>
             <div className={`${baseClass}-wrapper`}>
-                <span className={`${baseClass}-titlebar`}>{userName}</span>
                 <button className={`${baseClass}-createbutton`} onClick={handleCreateNew}>Create +</button>
                 <div className={`${baseClass}-scrollpane`}>
                     {isEmpty(floorPlans) ? (
                         <span className={`${baseClass}-no-floorplans`}>No floor plans saved</span>
                     ) : (
                         <ol>
-                            {floorPlans.map((floorPlan) => <li className={`${baseClass}-floorplan`} onClick={() => handleListingClick(floorPlan.id)}>{floorPlan.title}</li>)}
+                            {floorPlans.map((floorPlan) =>
+                                <li className={`${baseClass}-floorplan`} onClick={() => handleListingClick(floorPlan.id)}>
+                                    {floorPlan.title}
+                                </li>
+                            )}
                         </ol>
                     )}
                 </div>

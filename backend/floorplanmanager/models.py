@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class User(models.Model):
     id = models.BigAutoField(primary_key=True)
     user_name = models.CharField(max_length=120, unique=True)
@@ -18,6 +16,7 @@ class FloorPlan(models.Model):
     title = models.CharField(max_length = 30, unique=True)
     height = models.IntegerField()
     width = models.IntegerField()
+    room_length = models.IntegerField()
 
     floor_plans = models.Manager()
 

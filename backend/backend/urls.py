@@ -5,6 +5,7 @@ from floorplanmanager import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserView, 'user')
+router.register(r'floorPlans', views.FloorPlanView, 'floor_plan')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

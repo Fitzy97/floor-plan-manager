@@ -1,0 +1,76 @@
+@use 'variables';
+
+.#{variables.$viewer-page} {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: skyblue;
+  align-items: center;
+}
+
+.#{variables.$viewer-page}-floorplan-wrapper {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 2rem;
+}
+
+.#{variables.$viewer-page}-floorplan {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  align-self: center;
+}
+
+.#{variables.$viewer-page}-row {
+  display: flex;
+}
+
+.#{variables.$viewer-page}-room {
+  position: relative;
+  height: 4rem;
+  width: 4rem;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+}
+
+.#{variables.$viewer-page}-top {
+  position: absolute;
+  z-index: 1;
+  width: 2rem;
+  height: 100%;
+  border-top: 1px solid white;
+  margin-top: -2px;
+}
+
+.#{variables.$viewer-page}-bottom {
+  position: absolute;
+  z-index: 2;
+  width: 2rem;
+  height: 100%;
+  border-bottom: 1px solid white;
+  margin-bottom: -2px;
+}
+
+.#{variables.$viewer-page}-left {
+  position: absolute;
+  z-index: 3;
+  height: 2rem;
+  width: 100%;
+  border-left: 1px solid white;
+  margin-left: -2px;
+  align-self: center;
+}
+
+.#{variables.$viewer-page}-right {
+  position: absolute;
+  z-index: 4;
+  height: 2rem;
+  width: 100%;
+  border-right: 1px solid white;
+  margin-right: -2px;
+  align-self: center;
+}

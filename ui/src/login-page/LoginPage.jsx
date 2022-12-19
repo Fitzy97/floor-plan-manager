@@ -60,21 +60,33 @@ function LoginPage() {
 
         const user_name = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+        const password2 = document.getElementById('password2').value;
 
-        try {
-            if (currentTab === TAB_NAMES.SIGN_UP) {
-                const { payload } = await axios.post('/api/users/', {
+        if (currentTab === TAB_NAMES.SIGN_UP) {
+            if (password !== password2) {
+                setApiError('Passwords do not match');
+                return;
+            }
+            try {
+                const payload = await axios.post('/api/users/', {
                     user_name,
                     password,
                 });
-                navigate(`/listing/${get(payload, 'userId')}/`);
-            } else {
-                const { payload } = await axios.get(`/api/users/${user_name}/${password}/`);
-                navigate(`/listing/${get(payload, 'userId')}/`);
+                const userId = get(payload, 'data.id');
+                navigate(`/listing/${userId}/`);
+            } catch (e) {
+                setShowErrors(true);
+                setApiError('Could not create a user with that username');
             }
-        } catch (e) {
-            setShowErrors(true);
-            setApiError(e.message);
+        } else {
+            try {
+                const payload = await axios.get(`/api/users/?user_name=${user_name}&password=${password}`);
+                const userId = get(get(payload, 'data')[0], 'id');
+                navigate(`/listing/${userId}/`);
+            } catch (e) {
+                setShowErrors(true);
+                setApiError('Could not authenticate user credentials');
+            }
         }
     }
 

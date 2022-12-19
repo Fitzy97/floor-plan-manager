@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
   background-color: skyblue;
   justify-content: center;
 }
@@ -30,10 +30,20 @@
   border: 1px solid skyblue;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 
   span {
     margin: 3rem;
     font-size: medium;
     align-self: center;
   };
+}
+
+.#{variables.$listing-page}-floorplan {
+  margin: 1rem;
+  border-bottom: 1px solid blue;
+}
+
+.#{variables.$listing-page}-floorplan:hover {
+  cursor: pointer;
 }

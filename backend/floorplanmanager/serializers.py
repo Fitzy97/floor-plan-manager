@@ -9,4 +9,4 @@ class UserSerializer(serializers.ModelSerializer):
 class FloorPlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = FloorPlan
-        fields = ('id', 'user_id', 'title', 'height', 'width')
+        fields = ('id', 'user_id', 'title', 'height', 'width', 'room_length')
